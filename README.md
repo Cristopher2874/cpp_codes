@@ -2,6 +2,8 @@
 
 Revisa el tutorial completo en [video](https://www.youtube.com/@The_Next_Launch)
 
+La guia oficial para el uso de miniwin está en su [documentación oficial](https://miniwin.readthedocs.io/en/latest/Instalacion.html)
+
 Esta guía explica cómo ejecutar un programa de C++ que utiliza la biblioteca MiniWin con **Run and Debug** de VS Code.
 
 Para la configuración solo se requieren dos archivos:

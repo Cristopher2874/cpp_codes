@@ -1,6 +1,6 @@
 # Miniwin en VS Code
 
-Revisa el tutorial completo en [video](https://www.youtube.com/@The_Next_Launch)
+Revisa el tutorial completo en [MiniWin + VS Code en Windows: tasks.json, launch.json y tu primera ventana gráfica](https://youtu.be/vVF_ITeqdrA)
 
 La guia oficial para el uso de miniwin está en su [documentación oficial](https://miniwin.readthedocs.io/en/latest/Instalacion.html)
 

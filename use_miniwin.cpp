@@ -5,7 +5,7 @@ using namespace miniwin;
 int main() {
     vredimensiona(640, 480);
 
-    color(AZUL);
+    color(AMARILLO);
     rectangulo_lleno(50, 50, 200, 200);
 
     refresca();

@@ -158,6 +158,23 @@ int main() {
     refresca();
 
     while (tecla() == NINGUNA);
+
+    luna.borrar();
+    punta.borrar();   
+    cuerpo.borrar();  
+    ventana.borrar(); 
+    aleta_izq1.borrar();
+    aleta_izq2.borrar();
+    aleta_der1.borrar();
+    aleta_der2.borrar();
+    fuego1.borrar();
+    fuego2.borrar();
+    fuego3.borrar();
+
+    refresca();
+
+    while (tecla() == NINGUNA);
+
     vcierra();
     return 0;
 }

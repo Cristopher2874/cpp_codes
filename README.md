@@ -1,5 +1,22 @@
 # Miniwin en VS Code
 
+## Índice rápido del proyecto
+
+```text
+.
+├── miniwin.cpp / miniwin.h   # Implementación y cabecera de la biblioteca MiniWin
+├── use_miniwin.cpp            # Ejemplo principal de una ventana gráfica
+├── drawing_abstract.cpp       # Ejemplo de dibujo con abstracciones
+├── drawing_class.cpp           # Ejemplo de dibujo basado en clases
+├── cpp_codes/                 # Ejercicios y ejemplos generales de C++
+├── c_codes/                  # Ejemplos básicos de C
+├── sample_lib/               # Ejemplo de una biblioteca propia
+├── .vscode/                  # tasks.json y launch.json para compilar y depurar
+└── README.md                 # Guía de configuración y uso del proyecto
+```
+
+Los archivos de la raíz muestran el uso de MiniWin. Las carpetas `cpp_codes/`, `c_codes/` y `sample_lib/` reúnen ejercicios independientes que sirven como material de práctica.
+
 Revisa el tutorial completo en [MiniWin + VS Code en Windows: tasks.json, launch.json y tu primera ventana gráfica](https://youtu.be/vVF_ITeqdrA)
 
 La guia oficial para el uso de miniwin está en su [documentación oficial](https://miniwin.readthedocs.io/en/latest/Instalacion.html)

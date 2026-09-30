@@ -30,8 +30,29 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
-                "${workspaceFolder}\\miniwin.cpp",
+                "${fileDirname}\\*.cpp",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-lgdi32",
+                "-luser32",
+                "-lkernel32"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Build project folder",
+            "type": "shell",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${fileDirname}\\*.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-lgdi32",

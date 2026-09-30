@@ -5,7 +5,8 @@
 #include "miniwin.h"
 
 Circle::Circle(int x, int y, int radius, int shape_color, bool fill)
-    : Shape(x, y, shape_color, fill), radius(radius) {
+    : Shape(x, y, shape_color, fill) {
+    this->radius = radius;
 }
 
 void Circle::draw() {
@@ -24,4 +25,4 @@ void Circle::erase() {
         miniwin::circulo(x, y, radius);
 }
 
-    #endif
+#endif

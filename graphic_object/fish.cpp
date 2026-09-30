@@ -6,32 +6,20 @@
 
 Fish::Fish(int x, int y, int size, int shape_color)
 	: Shape(x, y, shape_color, true),
-	  size(size),
-	  body(x, y, size, shape_color),
-	  eye(x + size / 3, y - size / 3, size / 8, miniwin::NEGRO) {
-}
-
-void Fish::draw_tail(int color) {
-	miniwin::color(color);
-
-	// Invierte el triangulo: el vertice queda junto al cuerpo.
-	for (int offset = -size; offset <= size; offset++) {
-		int right = x - size - (offset < 0 ? -offset : offset);
-		miniwin::linea(x - 2 * size, y + offset, right, y + offset);
-	}
-
-	miniwin::linea(x - 2 * size, y - size, x - size, y);
-	miniwin::linea(x - 2 * size, y + size, x - size, y);
+	  body(x, y, size, shape_color, true),
+	  eye(x + size / 3, y - size / 3, size / 8, miniwin::NEGRO),
+	  tail(x - 3 * size / 2, y, 2 * size, shape_color, 0) {
+    this->size = size;
 }
 
 void Fish::draw() {
-	draw_tail(shape_color);
+	tail.draw();
 	body.draw();
 	eye.draw();
 }
 
 void Fish::erase() {
-	draw_tail(miniwin::NEGRO);
+	tail.erase();
 	body.erase();
 	eye.erase();
 }

@@ -5,7 +5,8 @@
 #include "miniwin.h"
 
 Square::Square(int x, int y, int side, int shape_color, bool fill)
-    : Shape(x, y, shape_color, fill), side(side) {
+    : Shape(x, y, shape_color, fill) {
+    this->side = side;
 }
 
 void Square::draw() {

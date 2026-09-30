@@ -3,11 +3,13 @@
 
 #include "shape.h"
 
-Shape::Shape(int x, int y, int shape_color, bool fill)
-    : x(x), y(y), shape_color(shape_color), fill(fill) {
+Shape::Shape(int x, int y, int shape_color, bool fill) {
+    this->x = x;
+    this->y = y;
+    this->shape_color = shape_color;
+    this->fill = fill;
 }
 
-Shape::~Shape() {
-}
+Shape::~Shape(){}
 
 #endif

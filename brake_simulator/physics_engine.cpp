@@ -70,8 +70,11 @@ void PhysicsEngine::generateTrajectory(vector<double>& distances, vector<double>
     if (step <= 0) {
         step = 10;
     }
+
+    distances.clear();
+    speeds.clear();
     
-    for(double i = 0; i<=total_distance; i+=step){
+    for(double i = 0; i<total_distance; i+=step){
         temp_speed = computeXSpeed(i);
         distances.push_back(i);
         speeds.push_back(temp_speed);

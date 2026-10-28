@@ -2,27 +2,35 @@
 #define MENU_ENGINE_H
 
 #include "car.h"
+#include "physics_engine.h"
+#include <string>
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 class MenuEngine{
-	private:
-        Car current_car; //auto
-        int selected_car; 
+        private:
+                Car current_car; //auto
+                PhysicsEngine engine;
+                int selected_car; 
 
 	public:
-		MenuEngine(int selected_car);
+                MenuEngine(int selected_car=1);
 
-        void set_selected_car(int selected_car);
+                void set_selected_car(int selected_car);
 
-        int get_selected_car();
-        void get_start_parameters();
+                template<class T>
+                T get_value(T value, string message){
+                        cout<<message<<endl;
+                        cin>>value;
+                        return value;
+                }
+
+                int get_selected_car();
+                void get_start_parameters();
         
-        void show_header();
-        void show_simulation_results();
-        void start();
+                void show_header();
+                void show_simulation_results();
+                void start_main();
 };
 
 #endif

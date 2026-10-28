@@ -2,7 +2,7 @@
 #define PHYSICS_ENGINE_CPP
 
 #include "physics_engine.h"
-#include "math.h"
+#include <cmath>
 
 PhysicsEngine::PhysicsEngine(double mu, double v0){
     set_mu(mu);
@@ -11,12 +11,20 @@ PhysicsEngine::PhysicsEngine(double mu, double v0){
 }
 
 void PhysicsEngine::set_mu(double mu){
+    if(mu<=0){
+        mu=1;
+        cerr<<"mu = 1 por defecto ya que no puede ser 0"<<endl;
+    }
     this->mu = mu;
     return;
 }
 
 void PhysicsEngine::set_v0(double v0){
-    this->v0 = v0;
+    if(v0<=0){
+        v0=1;
+        cerr<<"V0 = 1 por defecto ya que no puede ser 0"<<endl;
+    }
+    this->v0 = v0/3.6; // pasamos a ms
     return;
 }
 
@@ -45,19 +53,32 @@ double PhysicsEngine::computeStopDistance(){
 double PhysicsEngine::computeXSpeed(double x){
     double v02 = get_v0() * get_v0();
     double second = 2 * (computeDeAcceleration()) * x;
-    double vx = sqrt(v02 + second);
+    double square_speed = v02+second;
+
+    if(square_speed<0){
+        square_speed=0;
+    }
+
+    double vx = sqrt(square_speed);
     return vx*3.6; // a km/h
 }
 
-void PhysicsEngine::generateTrajectory(vector<double>& distances, vector<double>& speeds, double step=10){
+void PhysicsEngine::generateTrajectory(vector<double>& distances, vector<double>& speeds, double step){
     double total_distance = computeStopDistance();
     double temp_speed;
+
+    if (step <= 0) {
+        step = 10;
+    }
     
-    for(int i = 0; i<=total_distance; i+=step){
+    for(double i = 0; i<=total_distance; i+=step){
         temp_speed = computeXSpeed(i);
-        distances.push_back(total_distance-i);
+        distances.push_back(i);
         speeds.push_back(temp_speed);
     }
+
+    distances.push_back(total_distance);
+    speeds.push_back(0.0);
 
     return;
 }

@@ -19,9 +19,9 @@ class MenuEngine{
                 void set_selected_car(int selected_car);
 
                 template<class T>
-                T get_value(T value, string message){
-                        cout<<message<<endl;
-                        cin>>value;
+                T get_value(T value, std::string message){
+                        std::cout<<message<<std::endl;
+                        std::cin>>value;
                         return value;
                 }
 

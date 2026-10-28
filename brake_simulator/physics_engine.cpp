@@ -2,7 +2,9 @@
 #define PHYSICS_ENGINE_CPP
 
 #include "physics_engine.h"
+#include <algorithm>
 #include <cmath>
+#include <limits>
 
 PhysicsEngine::PhysicsEngine(double mu, double v0){
     set_mu(mu);
@@ -13,7 +15,7 @@ PhysicsEngine::PhysicsEngine(double mu, double v0){
 void PhysicsEngine::set_mu(double mu){
     if(mu<=0){
         mu=1;
-        cerr<<"mu = 1 por defecto ya que no puede ser 0"<<endl;
+        std::cerr<<"mu = 1 por defecto ya que no puede ser 0"<<std::endl;
     }
     this->mu = mu;
     return;
@@ -22,7 +24,7 @@ void PhysicsEngine::set_mu(double mu){
 void PhysicsEngine::set_v0(double v0){
     if(v0<=0){
         v0=1;
-        cerr<<"V0 = 1 por defecto ya que no puede ser 0"<<endl;
+        std::cerr<<"V0 = 1 por defecto ya que no puede ser 0"<<std::endl;
     }
     this->v0 = v0/3.6; // pasamos a ms
     return;
@@ -47,7 +49,7 @@ double PhysicsEngine::computeStopDistance(){
     double v02 = get_v0() * get_v0();
     double den = 2 * (computeDeAcceleration());
 
-    return abs(v02/den); // la distancia siempre es positiva
+    return std::abs(v02/den); // la distancia siempre es positiva
 }
 
 double PhysicsEngine::computeXSpeed(double x){
@@ -59,11 +61,11 @@ double PhysicsEngine::computeXSpeed(double x){
         square_speed=0;
     }
 
-    double vx = sqrt(square_speed);
+    double vx = std::sqrt(square_speed);
     return vx*3.6; // a km/h
 }
 
-void PhysicsEngine::generateTrajectory(vector<double>& distances, vector<double>& speeds, double step){
+void PhysicsEngine::generateTrajectory(std::vector<double>& distances, std::vector<double>& speeds, double step){
     double total_distance = computeStopDistance();
     double temp_speed;
 
@@ -80,8 +82,13 @@ void PhysicsEngine::generateTrajectory(vector<double>& distances, vector<double>
         speeds.push_back(temp_speed);
     }
 
-    distances.push_back(total_distance);
-    speeds.push_back(0.0);
+    if(distances.empty() || (distances.back()-total_distance) > step){
+        distances.push_back(total_distance);
+        speeds.push_back(0.0);
+    }else {
+        distances.back() = total_distance;
+        speeds.back() = 0.0;
+    }
 
     return;
 }

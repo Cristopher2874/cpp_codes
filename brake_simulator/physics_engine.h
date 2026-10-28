@@ -4,8 +4,6 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 class PhysicsEngine{
 	private:
                 double mu; //coeficiente de friccion cte.
@@ -26,7 +24,7 @@ class PhysicsEngine{
                 double computeStopDistance();
                 double computeXSpeed(double x);
 
-                void generateTrajectory(vector<double>& distances, vector<double>& speeds, double step=10);
+                void generateTrajectory(std::vector<double>& distances, std::vector<double>& speeds, double step=10);
 };
 
 #endif

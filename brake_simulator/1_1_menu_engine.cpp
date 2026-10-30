@@ -23,17 +23,20 @@ int MenuEngine::get_selected_car(){
 
 void MenuEngine::get_start_parameters(){
     double mu=0.0, v0=0.0;
+    int step = 0;
     mu = get_value(mu, "Enter the mu value different from 0: ");
     v0 = get_value(v0, "Enter the v0 value in km/h different from 0: ");
+    step = get_value(step, "Enter the simulation step as positive value different from 0");
     engine.set_mu(mu);
     engine.set_v0(v0);
+    engine.set_step(step);
 
     std::cout<<"\nStarted values for mu and v0"<<std::endl;
     return;
 }
 
 void MenuEngine::show_header(){
-    std::cout<<"Welcome to brake simulator 3.0"<<std::endl;
+    std::cout<<"Welcome to brake simulator 3.0 by Cristopher :)"<<std::endl;
     return;
 }
 
@@ -47,9 +50,8 @@ void MenuEngine::show_simulacion_deacceleration(){
 }
 
 void MenuEngine::show_simulation_results(){
-    double step=5;
-    
-    engine.generateTrajectory(distances, speeds, step);
+
+    engine.generateTrajectory(distances, speeds);
 
     std::cout << std::fixed << std::setprecision(4);
 

@@ -15,7 +15,7 @@ PhysicsEngine::PhysicsEngine(double mu, double v0){
 void PhysicsEngine::set_mu(double mu){
     if(mu<=0){
         mu=1;
-        std::cerr<<"mu = 1 por defecto ya que no puede ser 0"<<std::endl;
+        std::cerr<<"mu = 1 as default since it cannot be 0 or negative"<<std::endl;
     }
     this->mu = mu;
     return;
@@ -24,10 +24,17 @@ void PhysicsEngine::set_mu(double mu){
 void PhysicsEngine::set_v0(double v0){
     if(v0<=0){
         v0=1;
-        std::cerr<<"V0 = 1 por defecto ya que no puede ser 0"<<std::endl;
+        std::cerr<<"V0 = 1 as default since it cannot be 0 or negative"<<std::endl;
     }
     this->v0 = v0/3.6; // pasamos a ms
     return;
+}
+
+void PhysicsEngine::set_step(int step){
+    if(step <=0){
+        step = 10;
+        std::cerr<<"step = 10 as default since it cannot be 0 or negative"<<std::endl;
+    }
 }
 
 double PhysicsEngine::get_mu(){
@@ -39,6 +46,10 @@ double PhysicsEngine::get_v0(){
 
 double PhysicsEngine::get_g(){
     return this->g;
+}
+
+int PhysicsEngine::get_step(){
+    return this->step;
 }
 
 double PhysicsEngine::computeDeAcceleration(){
@@ -65,7 +76,7 @@ double PhysicsEngine::computeXSpeed(double x){
     return vx*3.6; // a km/h
 }
 
-void PhysicsEngine::generateTrajectory(std::vector<double>& distances, std::vector<double>& speeds, double step){
+void PhysicsEngine::generateTrajectory(std::vector<double>& distances, std::vector<double>& speeds){
     double total_distance = computeStopDistance();
     double temp_speed;
 

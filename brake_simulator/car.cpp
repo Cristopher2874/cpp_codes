@@ -7,16 +7,37 @@ Car::Car(int x, int y, int wheel_width, int wheel_side) : Shape(x, y, miniwin::A
       front_left_wheel(wheel_width, x - 60, y - 45, wheel_side),
       front_right_wheel(wheel_width, x + 60, y - 45, wheel_side),
       rear_left_wheel(wheel_width, x - 60, y + 45, wheel_side),
-      rear_right_wheel(wheel_width, x + 60, y + 45, wheel_side) {}
+      rear_right_wheel(wheel_width, x + 60, y + 45, wheel_side),
+      chassis(x, y, 80, miniwin::AZUL),
+      cockpit(x - 10, y, 30, miniwin::ROJO),
+      front_wing_left(x + 76, y - 24, 16, miniwin::AMARILLO),
+      front_wing_right(x + 76, y + 24, 16, miniwin::AMARILLO),
+      rear_wing_left(x - 70, y - 24, 20, miniwin::MAGENTA),
+      rear_wing_right(x - 70, y + 24, 20, miniwin::MAGENTA),
+      nose(x + 58, y, 42, miniwin::AZUL, 0) {}
 
 void Car::draw() {
     front_left_wheel.draw();
     front_right_wheel.draw();
     rear_left_wheel.draw();
     rear_right_wheel.draw();
+    rear_wing_left.draw();
+    rear_wing_right.draw();
+    chassis.draw();
+    cockpit.draw();
+    nose.draw();
+    front_wing_left.draw();
+    front_wing_right.draw();
 }
 
 void Car::erase() {
+    front_wing_left.erase();
+    front_wing_right.erase();
+    nose.erase();
+    cockpit.erase();
+    chassis.erase();
+    rear_wing_left.erase();
+    rear_wing_right.erase();
     front_left_wheel.erase();
     front_right_wheel.erase();
     rear_left_wheel.erase();
@@ -33,6 +54,14 @@ void Car::moveTo(int nx, int ny) {
     front_right_wheel.moveTo(x + 60, y - 45);
     rear_left_wheel.moveTo(x - 60, y + 45);
     rear_right_wheel.moveTo(x + 60, y + 45);
+
+    chassis.moveTo(x, y);
+    cockpit.moveTo(x - 10, y);
+    front_wing_left.moveTo(x + 76, y - 24);
+    front_wing_right.moveTo(x + 76, y + 24);
+    rear_wing_left.moveTo(x - 70, y - 24);
+    rear_wing_right.moveTo(x - 70, y + 24);
+    nose.moveTo(x + 58, y);
 
     draw();
 }

@@ -2,6 +2,9 @@
 #define CAR_H
 
 #include "wheel.h"
+#include "chassis.h"
+#include "front_wing.h"
+#include "rear_wing.h"
 #include "square.h"
 #include "triangle.h"
 #include <vector>
@@ -12,12 +15,10 @@ class Car : public Shape{
         Wheel front_right_wheel;
         Wheel rear_left_wheel;
         Wheel rear_right_wheel;
-        Square chassis;
+        Chassis chassis;
         Square cockpit;
-        Square front_wing_left;
-        Square front_wing_right;
-        Square rear_wing_left;
-        Square rear_wing_right;
+        FrontWing front_wing;
+        RearWing rear_wing;
         Triangle nose;
         const int window_width = 1000;
         const int window_height = 480;

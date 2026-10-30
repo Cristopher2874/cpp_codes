@@ -35,6 +35,9 @@ void PhysicsEngine::set_step(int step){
         step = 10;
         std::cerr<<"step = 10 as default since it cannot be 0 or negative"<<std::endl;
     }
+
+    this->step = step;
+    return;
 }
 
 double PhysicsEngine::get_mu(){

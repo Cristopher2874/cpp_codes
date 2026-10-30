@@ -5,6 +5,7 @@
 #include "physics_engine.h"
 #include <cmath>
 #include <string>
+#include <iomanip>
 
 MenuEngine::MenuEngine(int selected_car) : engine(1.0, 1.0){
     set_selected_car(selected_car);
@@ -26,12 +27,21 @@ void MenuEngine::get_start_parameters(){
     engine.set_mu(mu);
     engine.set_v0(v0);
 
-    std::cout<<"Started values for mu and v0"<<std::endl;
+    std::cout<<"\nStarted values for mu and v0"<<std::endl;
     return;
 }
 
 void MenuEngine::show_header(){
     std::cout<<"Welcome to brake simulator 3.0"<<std::endl;
+    return;
+}
+
+void MenuEngine::show_simulacion_deacceleration(){
+    double deacceleration = engine.computeDeAcceleration();
+
+    std::cout << std::fixed << std::setprecision(3);
+    std::cout << std::right << std::setw(5) << "\n\nDeacceleration (a): " << deacceleration << std::endl;
+
     return;
 }
 
@@ -42,10 +52,16 @@ void MenuEngine::show_simulation_results(){
     
     engine.generateTrajectory(distances, speeds, step);
 
-    std::cout<<"Distance "<<"Speed"<<std::endl;
+    std::cout << std::fixed << std::setprecision(4);
 
-    for(std::size_t i = 0; i<distances.size(); i++){
-        std::cout<<distances[i]<<" "<<speeds[i]<<std::endl;
+    std::cout << "Total distance (s): " << distances.back() << std::endl;
+
+    std::cout << std::right << std::setw(15) << "\n\nDistance" << std::setw(15) << "Speed" << std::endl;
+
+    std::cout << "-------------------------------" << std::endl;
+
+    for (std::size_t i = 0; i < distances.size(); i++) {
+        std::cout << std::setw(15) << distances[i] << std::setw(15) << speeds[i] << std::endl;
     }
 
     return;
@@ -54,6 +70,7 @@ void MenuEngine::show_simulation_results(){
 void MenuEngine::start_main(){
     show_header();
     get_start_parameters();
+    show_simulacion_deacceleration();
     show_simulation_results();
     return;
 }

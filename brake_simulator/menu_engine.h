@@ -30,6 +30,7 @@ class MenuEngine{
         
                 void show_header();
                 void show_simulation_results();
+                void show_simulacion_deacceleration();
                 void start_main();
 };
 

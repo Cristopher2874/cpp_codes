@@ -3,7 +3,7 @@
 
 #include "wheel.h"
 
-class Car {
+class Car : public Shape{
     private:
         Wheel front_left_wheel;
         Wheel front_right_wheel;
@@ -15,6 +15,9 @@ class Car {
 
         void draw();
         void erase();
+
+        void moveTo(int x, int y);
+        void moveBy(int dx, int dy);
 };
 
 #endif

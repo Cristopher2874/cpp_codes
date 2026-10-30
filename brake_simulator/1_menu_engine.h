@@ -11,7 +11,9 @@ class MenuEngine{
         private:
                 Car current_car; //auto
                 PhysicsEngine engine;
-                int selected_car; 
+                int selected_car;
+                std::vector<double> distances;
+                std::vector<double> speeds;
 
 	public:
                 MenuEngine(int selected_car=1);
@@ -31,6 +33,7 @@ class MenuEngine{
                 void show_header();
                 void show_simulation_results();
                 void show_simulacion_deacceleration();
+                void show_car_animation();
                 void start_main();
 };
 

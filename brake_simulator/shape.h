@@ -15,6 +15,9 @@ class Shape {
         virtual ~Shape();
         virtual void draw() = 0;
         virtual void erase() = 0;
+
+        virtual void moveTo(int nx, int ny);
+        virtual void moveBy(int dx, int dy);
 };
 
 #endif

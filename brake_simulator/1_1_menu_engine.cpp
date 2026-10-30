@@ -46,8 +46,6 @@ void MenuEngine::show_simulacion_deacceleration(){
 }
 
 void MenuEngine::show_simulation_results(){
-    std::vector<double> distances;
-    std::vector<double> speeds;
     double step=10;
     
     engine.generateTrajectory(distances, speeds, step);
@@ -64,6 +62,31 @@ void MenuEngine::show_simulation_results(){
         std::cout << std::setw(15) << distances[i] << std::setw(15) << speeds[i] << std::endl;
     }
 
+    std::cout << "\n Press RETURN to watch simulation" << std::endl;
+
+    return;
+}
+
+void MenuEngine::show_car_animation(){    
+
+    while (miniwin::tecla() != miniwin::RETURN);
+
+    miniwin::vredimensiona(640, 480);
+    miniwin::borra();
+    miniwin::refresca();
+
+    for (std::size_t i = 0; i < distances.size(); ++i) {
+        int x = 50 + int(distances[i]*5.0);
+        current_car.moveTo(x, 240);
+
+        miniwin::refresca();
+        miniwin::espera(100);
+    }
+
+    while (miniwin::tecla() == miniwin::NINGUNA);
+
+    miniwin::vcierra();
+
     return;
 }
 
@@ -72,6 +95,7 @@ void MenuEngine::start_main(){
     get_start_parameters();
     show_simulacion_deacceleration();
     show_simulation_results();
+    show_car_animation();
     return;
 }
 

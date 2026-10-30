@@ -19,10 +19,4 @@ void Shape::moveTo(int nx, int ny) {
     draw();
 }
 
-// hacemos los incrementos para que la animación sea fluída y no solo constante
-// un poco más de cálculos dependiendo del vecotr de velocidad.
-void Shape::moveBy(int dx, int dy) {
-    moveTo(x + dx, y + dy);
-}
-
 #endif

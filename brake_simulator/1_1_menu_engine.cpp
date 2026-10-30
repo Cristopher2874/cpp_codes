@@ -41,13 +41,13 @@ void MenuEngine::show_simulacion_deacceleration(){
     double deacceleration = engine.computeDeAcceleration();
 
     std::cout << std::fixed << std::setprecision(3);
-    std::cout << std::right << std::setw(5) << "\n\nDeacceleration (a): " << deacceleration << "m/s2" << std::endl;
+    std::cout << std::right << std::setw(5) << "\n\nDeacceleration (a): " << deacceleration << " m/s2" << std::endl;
 
     return;
 }
 
 void MenuEngine::show_simulation_results(){
-    double step=10;
+    double step=5;
     
     engine.generateTrajectory(distances, speeds, step);
 
@@ -75,49 +75,28 @@ void MenuEngine::show_car_animation(){
     // ahora sí leemos el enter
     std::cin.get();
 
-    const int window_width = 1000;
-    const int window_height = 480;
+    const int window_width = current_car.get_window_width();
+    const int window_height = current_car.get_window_height();
+
     miniwin::vredimensiona(window_width, window_height);
     miniwin::borra();
 
-    miniwin::color(miniwin::BLANCO);
-    miniwin::texto(20, 30, "Brake simulation");
-    miniwin::texto(20, 50, "The car is braking according to the generated trajectory.");
+    current_car.show_text_on_window(20, 30, "Brake simulation");
+    current_car.show_text_on_window(20, 50, "The car is braking according to the generated trajectory.");
 
-    //Revisamos que la pantalla esté acorde a la escala
-    const int initial_x = 100;
-    const int final_x = 900;
-    const double scale = distances.back() > 0 ? (final_x - initial_x) / distances.back() : 0;
+    int key;
 
-    while (miniwin::tecla() != 'r') {
-        current_car.moveTo(initial_x, window_height / 2);
+    do {
+        current_car.animate(distances, speeds);
+
+        current_car.show_text_on_window(20, window_height - 40,"Press R to repeat or any other key to close.");
         miniwin::refresca();
 
-        for (std::size_t i = 0; i < distances.size(); ++i) {
-            int x = initial_x + int(distances[i] * scale);
-            current_car.moveTo(x, window_height / 2);
+        do {
+            key = miniwin::tecla();
+        } while (key == miniwin::NINGUNA);
 
-            miniwin::refresca();
-            if (i + 1 < distances.size()) {
-                double average_speed = (speeds[i] + speeds[i + 1]) / 2.0;
-                double distance_step = distances[i + 1] - distances[i];
-                int delay = average_speed > 0
-                    ? int(distance_step / (average_speed / 3.6) * 1000.0)
-                    : 100;
-
-                if (delay < 20)
-                    delay = 20;
-                if (delay > 250)
-                    delay = 250;
-
-                miniwin::espera(delay);
-            }
-        }
-
-        miniwin::color(miniwin::BLANCO);
-        miniwin::texto(20, window_height - 40, "Press R to repeat or any other key to close.");
-        miniwin::refresca();
-    }
+    } while (key == 'r' || key == 'R');
 
     miniwin::vcierra();
 

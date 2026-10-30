@@ -14,9 +14,7 @@ class Wheel : public Shape {
 
         void draw() override;
         void erase() override;
-
         void moveTo(int nx, int ny) override;
-        void moveBy(int dx, int dy) override;
 };
 
 #endif

@@ -27,12 +27,4 @@ void Wheel::moveTo(int nx, int ny) {
     draw();
 }
 
-void Wheel::moveBy(int dx, int dy) {
-    erase();
-
-    current_wheel.moveBy(dx, dy);
-
-    draw();
-}
-
 #endif
